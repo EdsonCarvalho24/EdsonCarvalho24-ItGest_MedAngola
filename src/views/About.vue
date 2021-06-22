@@ -1,5 +1,18 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+ <div>
+      <Navbarpublico/>
+      <h1> SOBRE NÓS </h1>
   </div>
 </template>
+
+<script>
+  import Navbarpublico from '../components/Navbarpublico'
+
+  export default {
+    name: 'Publico',
+
+    components: {
+      Navbarpublico,
+    },
+  }
+</script>
