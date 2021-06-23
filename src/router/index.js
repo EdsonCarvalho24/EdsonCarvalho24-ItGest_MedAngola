@@ -4,6 +4,7 @@ import Publico from '../views/Publico.vue'
 import Login from '../views/Login.vue'
 import Vagas from '../views/Vagas.vue'
 import About from '../views/About.vue'
+import Dashboard from '../views/Dashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: About
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: Dashboard
   },
 ]
 
