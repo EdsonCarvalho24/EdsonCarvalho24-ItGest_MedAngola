@@ -8,6 +8,9 @@
             <span>ANGOLA</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-icon>mood</v-icon>
+        <span>CANDIDATO</span>
+        <v-spacer></v-spacer>
         <v-btn text to="/login" >
             <span>Sair</span>
             <v-icon>logout</v-icon>
@@ -31,21 +34,29 @@
                         <v-list-item-title>{{link.text}}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+                 <Formulariocandidatura/>
             </v-list>
         </v-navigation-drawer>
     </nav>
 </template>
 <script>
+import Formulariocandidatura from './Formulariocandidatura'
 export default{
+    components: {
+      Formulariocandidatura,
+    },
     data: () => ({
         drawer: true,
         links:[
-            {icon: 'home',   text:'Home', route:'/dashboard'},
-            {icon: 'view_list',   text:'Lista de Candidaturas', route:'/conteudo'},
-            {icon: 'analytics', text:'Validar Candidaturas', route:'/validar'},
-            {icon: 'leaderboard', text:'Outros', route:'#'}
+            {icon: 'home',   text:'Home', route:'/candidato'},
+            {icon: 'view_list',   text:'Efectuar Candidatura', route:'/teste'},
+            {icon: 'analytics', text:'Consultar', route:'#'},
+            {icon: 'message', text:'Ver notificações', route:'#'},
+            {icon: 'leaderboard', text:'Outros', route:'#'},
+
         ]
     })
+    
 }
 </script>
 <stile>
