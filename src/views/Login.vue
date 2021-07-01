@@ -110,6 +110,14 @@
                                                       type="text"
                                                       color="cyan"
                                                       />
+                                                      <v-text-field
+                                                        v-model="birthDate"
+                                                        color="blue accent-3"
+                                                        :rules="birthDateRules"
+                                                        type="date"
+                                                        label="birthDate"
+                                                        prepend-icon="event"/>
+                                                      
                                                       <v-select :items="items" label="Escola de Formação"></v-select>
                                                       <v-select :items="items" label="Municipio"></v-select>
                                                       <v-select :items="items" label="Genero"></v-select>
@@ -143,8 +151,14 @@ export default {
       /*Navbarpublico,*/
     },
     data:() => ({
-        step: 1
+        step: 1,
+        birthDate: '',
+                birthDateRules: [
+                v => !!v || 'birthDate is required'
+                ],
     }),
+    
+
     props:{
         source:String
     }

@@ -21,6 +21,8 @@
                             <v-spacer></v-spacer>
                             <v-btn color="blue darken-1" text @click="dialog= false">Close</v-btn>
                             <v-btn color="green" text outlined @click="submit">Save</v-btn>
+                            <v-btn class="mr-4" type="submit" :disabled="invalid"> submit </v-btn>
+                            <v-btn @click="clear">clear</v-btn>
                         </v-card-actions>
                     </v-form>
                 </v-card>
