@@ -1,32 +1,16 @@
 const router = require('express').Router()
-const { userSetter } = require('core-js/fn/symbol')
+const db = require('../../db')
 
-
-module.exports= router
-  router.get('/',(req, res) =>{
-    RTCPeerConnection.query('SELECT * FROM medangola.provincia',(error, results, )=>{
-      if(error){
-        throw error
-      }
-      res.send({
-        code:200,
-        meta:{
-          pagination:{
-            total: userSetter.length,
-            pages: 1,
-            page:1,
-            limit: undefined
-          }
+router.get('/', (_, res) => {
+    // listar os usuarios "uauários" que estão na BD
+    db.query("SELECT * FROM provincia", (error, results,) => {
+        if (error) {
+            throw error
+        }
+        res.send({
+            data: results
         },
-        data:results
-      })
+        );
     })
-  })
-
-
-
-
-
-
-
+})
 module.exports = router
