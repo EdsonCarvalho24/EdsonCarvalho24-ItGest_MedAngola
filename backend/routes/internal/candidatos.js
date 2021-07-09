@@ -2,8 +2,8 @@ const router = require('express').Router()
 const db = require('../../db')
 
 router.get('/', (_, res) => {
-    // listar os usuarios "uauários" que estão na BD
-    db.query("SELECT * FROM medangola.candidato", (error, results,) => {
+    // listar os candidatos que estão na BD
+    db.query("SELECT * FROM candidato", (error, results,) => {
         if (error) {
             throw error
         }

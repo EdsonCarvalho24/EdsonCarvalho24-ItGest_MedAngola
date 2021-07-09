@@ -24,9 +24,6 @@
             Email
           </th>
           <th class="text-left">
-           Senha
-          </th>
-          <th class="text-left">
            Municipio
           </th>
           <th class="text-left">
@@ -34,6 +31,9 @@
           </th>
           <th class="text-left">
            Genero
+          </th>
+          <th class="text-left">
+           Especialidade
           </th>
           <th class="text-left">
            Escola de formação
@@ -51,7 +51,6 @@
           <td>{{ candidato.data_nascimento }}</td>
           <td>{{ candidato.data_registro }}</td>
           <td>{{ candidato.email }}</td>
-          <td>{{ candidato.senha }}</td>
           <td>{{ candidato.id_municipio }}</td>
           <td>{{ candidato.id_nivelacademico }}</td>
           <td>{{ candidato.id_genero }}</td>
@@ -69,7 +68,6 @@ import Navbaradmin from '../components/Navbaradmin'
       name: 'Publico',
     components: {
       Navbaradmin,
-      
     },
     data () {
       return {
@@ -80,7 +78,6 @@ import Navbaradmin from '../components/Navbaradmin'
             data_nascimento: '',
             data_registro: '',
             email: '',
-            senha: '',
             id_municipio: '',
             id_nivelacademico: '',
             id_genero: '',
@@ -88,13 +85,19 @@ import Navbaradmin from '../components/Navbaradmin'
             id_escolaformacao: ''
         },
         candidatos:[]
-        
       }
     },
-    listarCandidatos() {
-      this.axios.get("http://localhost:3000/candidatos").then((response) => {
-        this.candidatos = response.data.data;
-      });
+
+    methods:{
+      getCandidatos (){
+        this.axios.get("http://localhost:3000/candidatos").then(res => {
+        this.candidatos = res.data.data;
+      })
+      }
+
     },
+     created(){
+       this.getCandidatos();
+     }
   }
 </script>
