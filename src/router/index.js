@@ -6,7 +6,7 @@ import Vagas from '../views/Vagas.vue'
 import About from '../views/About.vue'
 import Dashboard from '../views/Dashboard.vue'
 import LoginAdmin from '../views/LoginAdmin.vue'
-import Conteudo from '../views/Conteudo.vue'
+import Candidatos from '../views/Candidatos.vue'
 import Candidato from '../views/Candidato.vue'
 import Validar from '../views/Validar.vue'
 Vue.use(VueRouter)
@@ -43,9 +43,9 @@ const routes = [
     component: LoginAdmin
   },
   {
-    path: '/conteudo',
-    name: 'conteudo',
-    component: Conteudo
+    path: '/candidatos',
+    name: 'candidatos',
+    component: Candidatos
   },
 
   {

@@ -41,7 +41,7 @@ export default{
         drawer: true,
         links:[
             {icon: 'home',   text:'Home', route:'/dashboard'},
-            {icon: 'view_list',   text:'Lista de Candidaturas', route:'/conteudo'},
+            {icon: 'view_list',   text:'Lista de Candidatos', route:'/candidatos'},
             {icon: 'analytics', text:'Validar Candidaturas', route:'/validar'},
             {icon: 'leaderboard', text:'Outros', route:'#'}
         ]

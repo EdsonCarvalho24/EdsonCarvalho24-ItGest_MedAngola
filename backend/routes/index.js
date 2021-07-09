@@ -1,7 +1,14 @@
-const provinciaRouter = require('./internal/provincia')
+const candidatosRouter = require('./internal/candidatos')
+const candidaturaRouter = require('./internal/candidatura')
+
+
+
 
 module.exports = {
   register(app) {
-    app.use('/provincia', provinciaRouter)
+    app.use('/candidatos', candidatosRouter)
+    app.use('/candidatura', candidaturaRouter)
+    app.use('/tudo', candidatosRouter)
+    app.use('/register', candidatosRouter)
   }
 }

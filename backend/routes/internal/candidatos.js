@@ -3,7 +3,7 @@ const db = require('../../db')
 
 router.get('/', (_, res) => {
     // listar os usuarios "uauários" que estão na BD
-    db.query("SELECT * FROM provincia", (error, results,) => {
+    db.query("SELECT * FROM medangola.candidato", (error, results,) => {
         if (error) {
             throw error
         }
@@ -13,4 +13,5 @@ router.get('/', (_, res) => {
         );
     })
 })
+
 module.exports = router
