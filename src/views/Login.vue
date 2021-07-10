@@ -35,16 +35,16 @@
                           </h4>
                           <v-form>
                             <v-text-field
+                              v-model="email"
                               label="Email"
-                              name="Email"
                               prepend-icon="email"
                               type="text"
                               color="cyan"
                             />
                             <v-text-field
+                            v-model="email"
                               id="password"
                               label="Password"
-                              name="Password"
                               prepend-icon="lock"
                               type="password"
                               color="cyan"
@@ -241,9 +241,9 @@ export default {
   data() {
     return {
       step: 1,
-      selectProvincia: '',
-      selectmunicipio: '',
-      selectgenero: '',
+      selectProvincia: "",
+      selectmunicipio: "",
+      selectgenero: "",
       birthDate: "",
       birthDateRules: [(v) => !!v || "Data de nascimento é obrigatório"],
     };
@@ -271,11 +271,9 @@ export default {
         });
     },
     getGenero() {
-      this.axios
-        .get("http://localhost:3000/login/genero")
-        .then((response) => {
-          this.genero = response.data.data;
-        });
+      this.axios.get("http://localhost:3000/login/genero").then((response) => {
+        this.genero = response.data.data;
+      });
     },
     getEscoladeformacao() {
       this.axios
@@ -298,7 +296,6 @@ export default {
           this.especialidade = response.data.data;
         });
     },
-    
   },
   created() {
     this.getProvincia();
