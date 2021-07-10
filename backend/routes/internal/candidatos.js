@@ -14,6 +14,19 @@ router.get('/', (_, res) => {
     })
 })
 
+router.get('/genero', (_, res) => {
+    // listar os candidatos que estão na BD
+    db.query("SELECT * FROM genero", (error, results,) => {
+        if (error) {
+            throw error
+        }
+        res.send({
+            data: results
+        },
+        );
+    })
+})
+
 router.post('/', (req, res)=>{
     const candidato = req.body
     db.query('INSERT INTO candidato SET ?',[candidato], (error, results)=>{
