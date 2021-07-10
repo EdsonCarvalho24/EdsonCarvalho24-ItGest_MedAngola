@@ -27,9 +27,9 @@ router.get('/genero', (_, res) => {
     })
 })
 
-router.get('/municipio', (_, res) => {
-    // listar os candidatos que estão na BD
-    db.query("SELECT nome FROM municipio", (error, results,) => {
+router.get('/municipio/:id', (req, res) => {
+    const { id } = req.params
+    db.query(`SELECT * FROM municipio where id_provincia =  ${id}`, (error, results,) => {
         if (error) {
             throw error
         }
@@ -78,10 +78,9 @@ router.get('/especialidade', (_, res) => {
         );
     })
 })
-
 router.get('/provincia', (_, res) => {
     // listar os candidatos que estão na BD
-    db.query("SELECT nome FROM provincia", (error, results,) => {
+    db.query("SELECT * FROM provincia", (error, results,) => {
         if (error) {
             throw error
         }
