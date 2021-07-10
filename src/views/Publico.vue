@@ -2,7 +2,7 @@
   <div>
       <Navbarpublico/>
       <Footer/>
-      <h1> Todas as informações acerca do Portal </h1>
+      <Home/>
   </div>
   
 </template>
@@ -10,13 +10,15 @@
 <script>
   import Navbarpublico from '../components/Navbarpublico'
   import Footer from '../components/Footer'
+  import Home from '../components/Home'
 
   export default {
     name: 'Publico',
 
     components: {
       Navbarpublico,
-      Footer
+      Footer,
+      Home
     },
   }
 </script>
