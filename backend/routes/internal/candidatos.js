@@ -14,4 +14,14 @@ router.get('/', (_, res) => {
     })
 })
 
+router.post('/', (req, res)=>{
+    const candidato = req.body
+    db.query('INSERT INTO candidato SET ?',[candidato], (error, results)=>{
+        if(error){
+            throw error
+        }
+        res.send(results[0])
+    });
+})
+
 module.exports = router
