@@ -16,20 +16,7 @@ router.get('/', (_, res) => {
 
 router.get('/genero', (_, res) => {
     // listar os candidatos que estão na BD
-    db.query("SELECT * FROM genero", (error, results,) => {
-        if (error) {
-            throw error
-        }
-        res.send({
-            data: results
-        },
-        );
-    })
-})
-
-router.get('/municipio', (_, res) => {
-    // listar os candidatos que estão na BD
-    db.query("SELECT * FROM municipio", (error, results,) => {
+    db.query("SELECT nome FROM genero", (error, results,) => {
         if (error) {
             throw error
         }
@@ -42,7 +29,7 @@ router.get('/municipio', (_, res) => {
 
 router.get('/escolaformacao', (_, res) => {
     // listar os candidatos que estão na BD
-    db.query("SELECT * FROM escolaformacao", (error, results,) => {
+    db.query("SELECT nome FROM escolaformacao", (error, results,) => {
         if (error) {
             throw error
         }
@@ -53,31 +40,6 @@ router.get('/escolaformacao', (_, res) => {
     })
 })
 
-router.get('/nivelacademico', (_, res) => {
-    // listar os candidatos que estão na BD
-    db.query("SELECT * FROM nivelacademico", (error, results,) => {
-        if (error) {
-            throw error
-        }
-        res.send({
-            data: results
-        },
-        );
-    })
-})
-
-router.get('/especialidade', (_, res) => {
-    // listar os candidatos que estão na BD
-    db.query("SELECT * FROM especialidade", (error, results,) => {
-        if (error) {
-            throw error
-        }
-        res.send({
-            data: results
-        },
-        );
-    })
-})
 
 router.post('/', (req, res) => {
     const candidato = req.body
