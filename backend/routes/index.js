@@ -2,9 +2,6 @@ const candidatosRouter = require('./internal/candidatos')
 const candidaturaRouter = require('./internal/candidatura')
 const loginRouter = require('./internal/login')
 
-
-
-
 module.exports = {
   register(app) {
     app.use('/candidatos', candidatosRouter)
