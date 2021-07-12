@@ -1,8 +1,8 @@
-const db = require('../../db')
 const router = require('express').Router()
 const { validate } = require('indicative/validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const db = require('../../db')
 
 
 router.get('/', (_, res) => {
@@ -128,10 +128,10 @@ router.post('/', (req, res) => {
 
 //login
 module.exports = (req, res) => {
-    // validate(req.body, {
-    //    email: 'required|email',
-    //    senha: 'required'
-    //}).then((value) => {
+     validate(req.body, {
+       email: 'required|email',
+      senha: 'required'
+    }).then((value) => {
     db.query('SELECT email FROM candidato WHERE email = ?', [value.email], (error, results) => {
         if (results.length === 0) {
             res.status(400).send('Não é possível encontrar nenhuma conta que corresponda ao nome de usuário e senha fornecidos')
@@ -153,8 +153,8 @@ module.exports = (req, res) => {
                 }).catch((error) => { throw error })
         }
     })
-    // }).catch((error) => res.status(400).send(error))
-}
+     }).catch((error) => res.status(400).send(error))
+},
 
 router.post('/auth', (req, res) => {
     console.log(req)
@@ -189,7 +189,5 @@ router.post('/auth', (req, res) => {
     }).catch((error) => res.status(400).send(error))
 
 })
-
-
 
 module.exports = router

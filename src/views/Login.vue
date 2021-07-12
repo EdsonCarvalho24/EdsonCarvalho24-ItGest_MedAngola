@@ -35,14 +35,14 @@
                           </h4>
                           <v-form>
                             <v-text-field
-                              v-model="email"
+                              v-model="logar.email"
                               label="Email"
                               prepend-icon="email"
                               type="text"
                               color="cyan"
                             />
                             <v-text-field
-                            v-model="email"
+                            v-model="logar.senha"
                               id="password"
                               label="Password"
                               prepend-icon="lock"
@@ -106,27 +106,27 @@
                           <h4 class="text-center mt-4">INSIRA OS SEUS DADOS</h4>
                           <v-form>
                             <v-text-field
-                              v-model="nome"
+                              v-model="candidato.nome"
                               label="Nome"
                               prepend-icon="person"
                               color="cyan"
                             />
                             <v-text-field
-                              v-model="email"
+                              v-model="candidato.email"
                               label="Email"
                               prepend-icon="email"
                               type="email"
                               color="cyan"
                             />
                             <v-text-field
-                              v-model="password"
+                              v-model="candidato.senha"
                               label="Password"
                               prepend-icon="lock"
                               type="password"
                               color="cyan"
                             />
                             <v-text-field
-                              v-model="telefone"
+                              v-model="candidato.telefone"
                               label="Telefone"
                               name="Telefone"
                               prepend-icon="phone"
@@ -134,7 +134,7 @@
                               color="cyan"
                             />
                             <v-text-field
-                              v-model="datanascimento"
+                              v-model="candidato.datanascimento"
                               color="cyan"
                               :rules="birthDateRules"
                               type="date"
@@ -142,11 +142,11 @@
                               prepend-icon="event"
                             />
                             <v-select
-                              v-model="selectProvincia"
+                              v-model="candidato.selectProvincia"
                               :items="provincias"
                               item-value="id"
                               item-text="nome"
-                              color="escolaformacao"
+                              color="cyan"
                               label="Provincia"
                               prepend-icon="location_on"
                               required
@@ -154,7 +154,7 @@
                             </v-select>
 
                             <v-select
-                              v-model="selectmunicipio"
+                              v-model="candidato.selectmunicipio"
                               :items="municipio"
                               item-value="id"
                               item-text="nome"
@@ -165,7 +165,7 @@
                             >
                             </v-select>
                             <v-select
-                              v-model="selectgenero"
+                              v-model="candidato.selectgenero"
                               :items="genero"
                               item-value="id"
                               item-text="nome"
@@ -177,7 +177,7 @@
                             </v-select>
 
                             <v-select
-                              v-model="selectescolaformacao"
+                              v-model="candidato.selectescolaformacao"
                               :items="escolaformacao"
                               item-value="id"
                               item-text="nome"
@@ -188,7 +188,7 @@
                             >
                             </v-select>
                             <v-select
-                              v-model="selectnivelacademico"
+                              v-model="candidato.selectnivelacademico"
                               :items="nivelacademico"
                               item-value="id"
                               item-text="nome"
@@ -199,7 +199,7 @@
                             >
                             </v-select>
                             <v-select
-                              v-model="selectespecialidade"
+                              v-model="candidato.selectespecialidade"
                               :items="especialidade"
                               item-value="id"
                               item-text="nome"
@@ -241,11 +241,26 @@ export default {
   data() {
     return {
       step: 1,
-      selectProvincia: "",
-      selectmunicipio: "",
-      selectgenero: "",
-      birthDate: "",
-      birthDateRules: [(v) => !!v || "Data de nascimento é obrigatório"],
+      candidato: {
+        nome: "",
+        email: "",
+        senha: "",
+        telefone: "",
+        selectProvincia: [],
+        selectmunicipio: [],
+        selectgenero: [],
+        selectescolaformacao: [],
+        selectnivelacademico: [],
+        selectespecialidade: [],
+        datanascimento: "",
+        //birthDate: null,
+        birthDateRules: [(v) => !!v || "Data de nascimento é obrigatório"],
+      },
+      logar:{
+        email: null,
+        senha: null,
+
+      },
     };
   },
 

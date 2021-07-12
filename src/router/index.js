@@ -9,6 +9,7 @@ import LoginAdmin from '../views/LoginAdmin.vue'
 import Candidatos from '../views/Candidatos.vue'
 import Candidato from '../views/Candidato.vue'
 import Validar from '../views/Validar.vue'
+import NProgress from 'nprogress';
 Vue.use(VueRouter)
 
 const routes = [
@@ -66,4 +67,22 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeResolve((to, from, next) =>{
+  
+  if(to.name){
+    
+    NProgress.configure({ easing: 'ease', speed: 1000 });
+    NProgress.configure({ showSpinner: false });
+    NProgress.start();
+  }
+  next();
+});
+
+router.afterEach(() =>{
+  NProgress.done();
+})
 export default router
+
+
+
+
