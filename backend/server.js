@@ -2,6 +2,7 @@ const express = require('express')
 var cors = require('cors')
 const server = express()
 
+server.use(express.json())
 const EXPRESS_PORT = 3000
   
 server.use(cors())

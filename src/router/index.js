@@ -9,6 +9,7 @@ import LoginAdmin from '../views/LoginAdmin.vue'
 import Candidatos from '../views/Candidatos.vue'
 import Candidato from '../views/Candidato.vue'
 import Validar from '../views/Validar.vue'
+import Registro from '../views/Registro.vue'
 import NProgress from 'nprogress';
 Vue.use(VueRouter)
 
@@ -59,6 +60,13 @@ const routes = [
     name: 'validar',
     component: Validar
   },
+
+  {
+    path: '/registro',
+    name: 'registro',
+    component: Registro
+  },
+
 ]
 
 const router = new VueRouter({
