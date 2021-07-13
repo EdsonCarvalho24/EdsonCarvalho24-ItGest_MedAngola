@@ -6,7 +6,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="8">
               <v-card class="elevation-12">
-                <v-window >
+                <v-window>
                   <v-window-item :value="2">
                     <v-row class="fill-height">
                       <v-col cols="12" md="4" class="cyan">
@@ -57,6 +57,13 @@
                               color="cyan"
                             />
                             <v-text-field
+                              v-model="candidato.confSenha"
+                              label="Confirmar Password"
+                              prepend-icon="lock"
+                              type="password"
+                              color="cyan"
+                            />
+                            <v-text-field
                               v-model="candidato.telefone"
                               label="Telefone"
                               name="Telefone"
@@ -67,12 +74,11 @@
                             <v-text-field
                               v-model="candidato.datanascimento"
                               color="cyan"
-                    
                               type="date"
                               label="Data Nascimento"
                               prepend-icon="event"
                             />
-                            
+
                             <v-select
                               v-model="candidato.selectProvincia"
                               :items="provincias"
@@ -85,11 +91,11 @@
                               @change="getMunicipios"
                             >
                             </v-select>
-                            
+
                             <v-select
                               v-model="candidato.selectmunicipio"
                               :items="municipios"
-                              item-value="id"
+                              item-value="id_municipio"
                               item-text="nome"
                               color="cyan"
                               label="Municipio"
@@ -97,11 +103,11 @@
                               required
                             >
                             </v-select>
-                            
+
                             <v-select
                               v-model="candidato.selectgenero"
                               :items="generos"
-                              item-value="id"
+                              item-value="id_genero"
                               item-text="nome"
                               color="cyan"
                               label="Genero"
@@ -112,7 +118,7 @@
                             <v-select
                               v-model="candidato.selectescolaformacao"
                               :items="escolaformacao"
-                              item-value="id"
+                              item-value="id_escolaformacao"
                               item-text="nome"
                               color="blue accent-3"
                               label="Escola de Formação"
@@ -120,11 +126,11 @@
                               required
                             >
                             </v-select>
-                            
+
                             <v-select
                               v-model="candidato.selectnivelacademico"
                               :items="nivelacademico"
-                              item-value="id"
+                              item-value="id_nivelacademico"
                               item-text="nome"
                               color="cyan"
                               label="Nivel Academico"
@@ -132,11 +138,11 @@
                               required
                             >
                             </v-select>
-                            
+
                             <v-select
                               v-model="candidato.selectespecialidade"
                               :items="especialidade"
-                              item-value="id"
+                              item-value="id_especialidade"
                               item-text="nome"
                               color="cyan"
                               label="Especialidade"
@@ -144,11 +150,10 @@
                               required
                             >
                             </v-select>
-                            
                           </v-form>
                         </v-card-text>
                         <div class="text-center mt-n5">
-                          <v-btn rounded color="cyan" dark to="/candidato"
+                          <v-btn rounded color="cyan" dark @click="registar"
                             >REGISTAR-SE</v-btn
                           >
                         </div>
@@ -180,6 +185,7 @@ export default {
         nome: "",
         email: "",
         senha: "",
+        confsenha:"",
         telefone: "",
         selectProvincia: [],
         selectmunicipio: [],
@@ -191,41 +197,42 @@ export default {
         //birthDate: null,
         birthDateRules: [(v) => !!v || "Data de nascimento é obrigatório"],
       },
-      provincias:[],
-      municipios:[],
-      generos:[],
-      escolaformacao:[],
-      nivelacademico:[],
-      especialidade:[]
-      
+      provincias: [],
+      municipios: [],
+      generos: [],
+      escolaformacao: [],
+      nivelacademico: [],
+      especialidade: [],
     };
   },
-  
+
   methods: {
     getProvincia() {
       this.axios
         .get("http://localhost:3000/registro/provincia")
         .then((response) => {
           this.provincias = response.data.data;
-          console.log(this.candidato.selectProvincia)
+          console.log(this.candidato.selectProvincia);
         });
     },
     getMunicipios(provincia) {
-      console.log(provincia)
-      console.log(this.candidato.selectProvincia)
+      console.log(provincia);
+      console.log(this.candidato.selectProvincia);
       this.axios
-        .get(`http://localhost:3000/registro/municipio/${this.candidato.selectProvincia}`)
+        .get(
+          `http://localhost:3000/registro/municipio/${this.candidato.selectProvincia}`
+        )
         .then((response) => {
           this.municipios = response.data.data;
-          
         });
     },
     getGenero() {
-      this.axios.get("http://localhost:3000/registro/genero")
-      .then((response) => {
-        this.generos = response.data.data;
-        console.log(this.candidato.genero)
-      });
+      this.axios
+        .get("http://localhost:3000/registro/genero")
+        .then((response) => {
+          this.generos = response.data.data;
+          console.log(this.candidato.genero);
+        });
     },
     getEscoladeformacao() {
       this.axios
@@ -245,10 +252,35 @@ export default {
       this.axios
         .get("http://localhost:3000/registro/especialidade")
         .then((response) => {
-            console.log(response.data.data)
+          console.log(response.data.data);
           this.especialidade = response.data.data;
-          console.log(this.candidato.selectespecialidade)
+          console.log(this.candidato.selectespecialidade);
         });
+    },
+    registar() {
+      let data= {
+        nome: this.candidato.nome,
+        data_nascimento: this.candidato.datanascimento,
+        telefone: this.candidato.telefone,
+        email: this.candidato.email,
+        senha: this.candidato.senha,
+        confSenha: this.candidato.confSenha,
+        id_municipio: this.candidato.selectmunicipio,
+        id_nivelacademico: this.candidato.selectnivelacademico,
+        id_genero: this.candidato.selectgenero,
+        id_especialidade: this.candidato.selectespecialidade,
+        id_escolaformacao: this.candidato.selectescolaformacao,
+      };
+        console.log(data)
+      
+      this.axios
+      .post("http://localhost:3000/registro/new", data)
+      .then((response)=>{
+        console.log(response)
+        
+
+      })
+      
     },
   },
   created() {

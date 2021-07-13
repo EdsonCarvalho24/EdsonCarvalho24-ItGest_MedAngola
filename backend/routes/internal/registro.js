@@ -6,7 +6,7 @@ const { validate } = require('indicative/validator')
 const db = require('../../db')
 
 router.get('/genero', (_, res) => {
-    db.query("SELECT nome FROM genero", (error, results,) => {
+    db.query("SELECT * FROM genero", (error, results,) => {
         if (error) {
             throw error
         }
@@ -32,7 +32,7 @@ router.get('/municipio/:id', (req, res) => {
 
 
 router.get('/escolaformacao', (_, res) => {
-    db.query("SELECT nome FROM escolaformacao", (error, results,) => {
+    db.query("SELECT * FROM escolaformacao", (error, results,) => {
         if (error) {
             throw error
         }
@@ -44,7 +44,7 @@ router.get('/escolaformacao', (_, res) => {
 })
 
 router.get('/especialidade', (_, res) => {
-    db.query("SELECT nome FROM especialidade", (error, results,) => {
+    db.query("SELECT * FROM especialidade", (error, results,) => {
         if (error) {
             throw error
         }
@@ -67,7 +67,7 @@ router.get('/provincia', (_, res) => {
     })
 })
 router.get('/nivelacademico', (_, res) => {
-    db.query("SELECT nome FROM nivelacademico", (error, results,) => {
+    db.query("SELECT * FROM nivelacademico", (error, results,) => {
         if (error) {
             throw error
         }
@@ -89,7 +89,7 @@ router.get('/nivelacademico', (_, res) => {
 
 router.post('/new', (req, res) => {
     const candidato = req.body
-    
+    console.log(candidato)
      validate(candidato, {
         nome: 'required',
         email: 'required|email',

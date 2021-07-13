@@ -30,7 +30,7 @@
             <td>{{ candidato.nivelacademico }}</td>
             <td>{{ candidato.genero }}</td>
             <td>{{ candidato.especialidade }}</td>
-            <td>{{ candidato.escolaformacao }}</td>
+            <td>{{ candidato.escola_formacao }}</td>
             
           </tr>
         </tbody>
