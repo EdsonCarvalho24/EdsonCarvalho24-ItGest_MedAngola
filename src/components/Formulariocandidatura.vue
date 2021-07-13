@@ -2,7 +2,7 @@
         <v-row justify="center">
             <v-dialog v-model="dialog" persistent max-width="800px">
                 <template v-slot:activator="{on}">
-                    <v-btn outlined color="black" dark v-on="on">Nova</v-btn>
+                    <v-btn outlined color="" dark v-on="on">Efectuar Candidatura </v-btn>
                 </template>
                 <v-card>
                     <v-card-title>
@@ -10,19 +10,44 @@
                     </v-card-title>
                     <v-form class="px-3" ref="form">
                         <v-card-text>
-                            <v-text-field label="Nome Completo" v-model="title" prepend-icon=""></v-text-field>
-                            <v-select :items="items" label="Escola de Aplicação"></v-select>
-                            <v-select :items="items" label="Nível de Ensino"></v-select>
-                            <v-select :items="items" label="Escalão"></v-select>
-                            <input type="date" placeholder="YYYY/MM/DD"/>
-                            <v-text-field label="Escola" v-model="title" prepend-icon=""></v-text-field>
+                            <v-select
+                              v-model="escoladeaplicacao"
+                              :items="escoladeaplicacao"
+                              item-value="id"
+                              item-text="nome"
+                              color="cyan"
+                              label="Escola de Aplicacao"
+                              prepend-icon="school"
+                              required
+                            >
+                            </v-select>
+                            <v-select
+                              v-model="niveldeensino"
+                              :items="niveldeensino"
+                              item-value="id"
+                              item-text="nome"
+                              color="cyan"
+                              label="Nível de Ensino"
+                              prepend-icon="school"
+                              required
+                            >
+                            </v-select>
+                            <v-select
+                              v-model="escalão"
+                              :items="escalão"
+                              item-value="id"
+                              item-text="nome"
+                              color="cyan"
+                              label="Escalão"
+                              prepend-icon="school"
+                              required
+                            >
+                            </v-select>
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" text @click="dialog= false">Close</v-btn>
-                            <v-btn color="green" text outlined @click="submit">Save</v-btn>
-                            <v-btn class="mr-4" type="submit" :disabled="invalid"> submit </v-btn>
-                            <v-btn @click="clear">clear</v-btn>
+                            <v-btn color="blue darken-1" text  @click="dialog = drop">Fechar</v-btn>
+                            <v-btn class="mr-4" type="submit" > Submeter </v-btn>
                         </v-card-actions>
                     </v-form>
                 </v-card>

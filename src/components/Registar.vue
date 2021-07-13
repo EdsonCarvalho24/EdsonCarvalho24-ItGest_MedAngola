@@ -6,7 +6,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="8">
               <v-card class="elevation-12">
-                <v-window v-model="step">
+                <v-window >
                   <v-window-item :value="2">
                     <v-row class="fill-height">
                       <v-col cols="12" md="4" class="cyan">
@@ -67,7 +67,7 @@
                             <v-text-field
                               v-model="candidato.datanascimento"
                               color="cyan"
-                              :rules="birthDateRules"
+                    
                               type="date"
                               label="Data Nascimento"
                               prepend-icon="event"
@@ -75,19 +75,20 @@
                             
                             <v-select
                               v-model="candidato.selectProvincia"
-                              :items="candidato.selectProvincia"
-                              item-value="id"
+                              :items="provincias"
+                              item-value="id_provincia"
                               item-text="nome"
                               color="cyan"
                               label="Provincia"
                               prepend-icon="location_on"
                               required
+                              @change="getMunicipios"
                             >
                             </v-select>
                             
                             <v-select
                               v-model="candidato.selectmunicipio"
-                              :items="candidato.selectmunicipio"
+                              :items="municipios"
                               item-value="id"
                               item-text="nome"
                               color="cyan"
@@ -99,7 +100,7 @@
                             
                             <v-select
                               v-model="candidato.selectgenero"
-                              :items="candidato.selectgenero"
+                              :items="generos"
                               item-value="id"
                               item-text="nome"
                               color="cyan"
@@ -108,10 +109,9 @@
                               required
                             >
                             </v-select>
-                        
                             <v-select
                               v-model="candidato.selectescolaformacao"
-                              :items="candidato.selectescolaformacao"
+                              :items="escolaformacao"
                               item-value="id"
                               item-text="nome"
                               color="blue accent-3"
@@ -123,7 +123,7 @@
                             
                             <v-select
                               v-model="candidato.selectnivelacademico"
-                              :items="candidato.selectespecialidade"
+                              :items="nivelacademico"
                               item-value="id"
                               item-text="nome"
                               color="cyan"
@@ -135,7 +135,7 @@
                             
                             <v-select
                               v-model="candidato.selectespecialidade"
-                              :items="candidato.selectespecialidade"
+                              :items="especialidade"
                               item-value="id"
                               item-text="nome"
                               color="cyan"
@@ -191,34 +191,39 @@ export default {
         //birthDate: null,
         birthDateRules: [(v) => !!v || "Data de nascimento é obrigatório"],
       },
+      provincias:[],
+      municipios:[],
+      generos:[],
+      escolaformacao:[],
+      nivelacademico:[],
+      especialidade:[]
       
     };
   },
-  watch: {
-    selectProvincia(prov) {
-      this.getMunicipios(prov);
-    },
-  },
+  
   methods: {
     getProvincia() {
       this.axios
         .get("http://localhost:3000/registro/provincia")
         .then((response) => {
-          this.candidato.selectProvincia = response.data.data;
+          this.provincias = response.data.data;
           console.log(this.candidato.selectProvincia)
         });
     },
-    getMunicipios() {
+    getMunicipios(provincia) {
+      console.log(provincia)
+      console.log(this.candidato.selectProvincia)
       this.axios
-        .get(`http://localhost:3000/registro/municipio/${this.id_provincia}`)
+        .get(`http://localhost:3000/registro/municipio/${this.candidato.selectProvincia}`)
         .then((response) => {
-          this.municipio = response.data.data;
+          this.municipios = response.data.data;
+          
         });
     },
     getGenero() {
       this.axios.get("http://localhost:3000/registro/genero")
       .then((response) => {
-        this.candidato.genero = response.data.data;
+        this.generos = response.data.data;
         console.log(this.candidato.genero)
       });
     },

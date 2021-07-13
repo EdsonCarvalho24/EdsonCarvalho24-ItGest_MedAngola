@@ -24,6 +24,7 @@
                     </v-avatar>
                     <p class="white--text subheading mt-1 text-center">Username</p>
                 </v-flex>
+               
             </v-layout>
             <v-list flat>
                 <v-list-item v-for="link in links" :key="link.text" router :to="link.route" active-class="border">
@@ -34,10 +35,12 @@
                         <v-list-item-title>{{link.text}}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                 <Formulariocandidatura/>
             </v-list>
+            <Formulariocandidatura/>
         </v-navigation-drawer>
+         
     </nav>
+    
 </template>
 <script>
 import Formulariocandidatura from './Formulariocandidatura'
@@ -49,18 +52,18 @@ export default{
         drawer: true,
         links:[
             {icon: 'home',   text:'Home', route:'/candidato'},
-            {icon: 'view_list',   text:'Efectuar Candidatura', route:'/teste'},
             {icon: 'analytics', text:'Consultar', route:'#'},
             {icon: 'message', text:'Ver notificações', route:'#'},
             {icon: 'leaderboard', text:'Outros', route:'#'},
 
         ]
+        
     })
     
 }
 </script>
-<stile>
+<style>
 .border{
     border-left: 4px solid #0ba518
 }
-</stile>
+</style>

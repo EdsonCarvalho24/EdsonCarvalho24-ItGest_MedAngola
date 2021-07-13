@@ -55,7 +55,7 @@
                         </v-card-text>
                         
                         <div class="text-center">
-                          <v-btn rounded color="cyan" dark app to="/dashboard"
+                          <v-btn rounded color="cyan" dark app to="/candidato"
                             >ENTRAR</v-btn
                           >
                         </div>
