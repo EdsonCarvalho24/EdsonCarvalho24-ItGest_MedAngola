@@ -185,7 +185,7 @@ export default {
         nome: "",
         email: "",
         senha: "",
-        confsenha:"",
+        confsenha: "",
         telefone: "",
         selectProvincia: [],
         selectmunicipio: [],
@@ -195,7 +195,7 @@ export default {
         selectespecialidade: [],
         datanascimento: "",
         //birthDate: null,
-        birthDateRules: [(v) => !!v || "Data de nascimento é obrigatório"],
+        datanascimentoRules: [(v) => !!v || "Data de nascimento é obrigatório"],
       },
       provincias: [],
       municipios: [],
@@ -258,7 +258,7 @@ export default {
         });
     },
     registar() {
-      let data= {
+      let data = {
         nome: this.candidato.nome,
         data_nascimento: this.candidato.datanascimento,
         telefone: this.candidato.telefone,
@@ -271,16 +271,23 @@ export default {
         id_especialidade: this.candidato.selectespecialidade,
         id_escolaformacao: this.candidato.selectescolaformacao,
       };
-        console.log(data)
-      
-      this.axios
-      .post("http://localhost:3000/registro/new", data)
-      .then((response)=>{
-        console.log(response)
-        
+      console.log(data);
 
-      })
-      
+      this.axios
+        .post("http://localhost:3000/registro/new", data)
+        .then((response) => {
+          console.log(response);
+          if (response.status == 200) {
+            this.$swal({
+              title: "Dados validos",
+              icon: "success",
+              showConfirmButton: true, 
+              allowOutsideClick: false,
+              allowEscapekey: false,
+            });
+            this.$router.push({ name: 'login' })
+          }
+        });
     },
   },
   created() {
@@ -289,6 +296,7 @@ export default {
     this.getEscoladeformacao();
     this.getnivelacademico();
     this.getespecialidade();
+    //this.$swal('EDSON')
   },
   props: {
     source: String,

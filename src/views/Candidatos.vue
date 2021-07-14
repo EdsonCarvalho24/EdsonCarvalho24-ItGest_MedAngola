@@ -23,7 +23,7 @@
             <td>{{ candidato.id_candidato }}</td>
             <td>{{ candidato.nome }}</td>
             <td>{{ candidato.telefone }}</td>
-            <td>{{ candidato.data_nascimento }}</td>
+            <td>{{ candidato.data_nascimento | date: 'dd-MM-yyyy' }}</td>
             <td>{{ candidato.data_registro }}</td>
             <td>{{ candidato.email }}</td>
             <td>{{ candidato.municipio }}</td>

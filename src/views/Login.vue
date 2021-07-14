@@ -34,16 +34,15 @@
                           </h4>
                           <v-form>
                             <v-text-field
+                              v-model="login.email"
                               label="Email"
-                              name="Email"
                               prepend-icon="email"
-                              type="text"
+                              type="email"
                               color="cyan"
                             />
                             <v-text-field
-                              id="password"
+                              v-model="login.senha"
                               label="Password"
-                              name="Password"
                               prepend-icon="lock"
                               type="password"
                               color="cyan"
@@ -53,9 +52,9 @@
                             Esqueceu a sua senha?
                           </h3>
                         </v-card-text>
-                        
+
                         <div class="text-center">
-                          <v-btn rounded color="cyan" dark app to="/candidato"
+                          <v-btn rounded color="cyan" dark app @click="entrar"
                             >ENTRAR</v-btn
                           >
                         </div>
@@ -86,6 +85,62 @@
     </v-app>
   </div>
 </template>
+
+<script>
+/*import Navbarpublico from '../components/Navbarpublico'*/
+//import { mapActions, mapGetters } from 'vuex'
+export default {
+  name: "Publico",
+  components: {
+    /*Navbarpublico,*/
+  },
+  data() {
+    return {
+      login: {
+        email: "",
+        senha: "",
+      },
+    };
+  },
+
+  methods: {
+    entrar() {
+      let data = {
+        email: this.login.email,
+        senha: this.login.senha,
+      };
+      console.log(data);
+
+      this.axios
+        .post("http://localhost:3000/login/login", data)
+        .then((response) => {
+          console.log(response);
+          if (response.status == 200) {
+            this.$swal({
+              title: "Dados validos",
+              icon: "success",
+              showConfirmButton: true,
+              allowOutsideClick: false,
+              allowEscapekey: false,
+            });
+            this.$router.push({ name: 'candidato' })
+          } else
+            this.$swal({
+              title: "Dados Invalidos",
+              icon: "error",
+              showConfirmButton: true,
+              allowOutsideClick: false,
+              allowEscapekey: false,
+            });
+        });
+    },
+  },
+  created() {},
+  props: {
+    source: String,
+  },
+};
+</script>
 
 <style scoped>
 .btnentrar {
