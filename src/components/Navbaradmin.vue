@@ -8,7 +8,7 @@
             <span>ANGOLA</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn text to="/login" >
+        <v-btn text to="/loginadmin" >
             <span>Sair</span>
             <v-icon>logout</v-icon>
         </v-btn>

@@ -45,7 +45,7 @@ export default{
         drawer:true,
         links:[
             {icon: 'lock', text:'Candidato', route:'/login' },
-            {icon: 'lock', text:'Área Administrativa', route:'/loginadmin' }
+            //{icon: 'lock', text:'Área Administrativa', route:'/loginadmin' }
 
         ]
     })
