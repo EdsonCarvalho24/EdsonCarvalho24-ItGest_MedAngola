@@ -47,7 +47,7 @@ export default {
         this.setToken(localStorage.token);
         this.restoreAuth();
       } else {
-        this.$router.push("/login").catch(() => {});
+        //this.$router.push("/login").catch(() => {});
       }
     },
   },
