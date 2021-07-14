@@ -6,7 +6,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="8">
               <v-card class="elevation-12">
-                <v-window v-model="step">
+                <v-window>
                   <v-window-item :value="1">
                     <v-row>
                       <v-col cols="12" md="8">

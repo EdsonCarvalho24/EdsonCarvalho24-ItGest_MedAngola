@@ -6,6 +6,7 @@
     <br /><br /><br />
     <Dialogo /> <br />
     <Dialogo1 /> 
+  
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import Home from "../components/Home";
 import Dialogo from "../components/Dialogo";
 import Dialogo1 from "../components/Dialogo1";
 
+
 export default {
   name: "Publico",
 
@@ -25,6 +27,7 @@ export default {
     Home,
     Dialogo,
     Dialogo1,
+    
   },
 };
 </script>

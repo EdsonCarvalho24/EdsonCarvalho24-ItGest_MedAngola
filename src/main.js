@@ -5,7 +5,8 @@ import vuetify from './plugins/vuetify'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import '../node_modules/nprogress/nprogress.css'
-
+import {boot} from '@/app-bootstrap'
+import store from './store'
 
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
@@ -20,3 +21,12 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
+
+boot().then(() => {
+  new Vue({
+    router,
+    store,
+    vuetify,
+    render: h => h(App),
+  }).$mount('#app')
+})

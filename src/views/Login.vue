@@ -6,7 +6,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="8">
               <v-card class="elevation-12">
-                <v-window v-model="step">
+                <v-window >
                   <v-window-item :value="1">
                     <v-row>
                       <v-col cols="12" md="8">
@@ -88,8 +88,16 @@
 
 <script>
 /*import Navbarpublico from '../components/Navbarpublico'*/
-//import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 export default {
+  props: {
+    source: String,
+  },
+
+  computed: {
+    ...mapGetters(["user", "token"]),
+  },
+
   name: "Publico",
   components: {
     /*Navbarpublico,*/
@@ -104,6 +112,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(["setUser", "setToken"]),
+
     entrar() {
       let data = {
         email: this.login.email,
@@ -123,7 +133,11 @@ export default {
               allowOutsideClick: false,
               allowEscapekey: false,
             });
-            this.$router.push({ name: 'candidato' })
+
+            this.setUser(response.user);
+            this.setToken(response.token);
+
+            this.$router.push({ name: "candidato" });
           } else
             this.$swal({
               title: "Dados Invalidos",
@@ -136,9 +150,6 @@ export default {
     },
   },
   created() {},
-  props: {
-    source: String,
-  },
 };
 </script>
 
