@@ -55,7 +55,7 @@ router.get('/especialidade', (_, res) => {
     })
 })
 router.get('/provincia', (_, res) => {
-    
+
     db.query("SELECT * FROM provincia", (error, results,) => {
         if (error) {
             throw error
@@ -84,43 +84,43 @@ router.get('/nivelacademico', (_, res) => {
 //         sucess: true,
 //         data
 //     })
-    
+
 //})
 
 router.post('/new', (req, res) => {
     const candidato = req.body
     console.log(candidato)
-     validate(candidato, {
+    validate(candidato, {
         nome: 'required',
         email: 'required|email',
-         senha: 'required|min:6',
-         confSenha: 'required|same:senha',
-         data_nascimento: 'required'
-     }).then((value) => {
-         console.log('Aqui2',value)
-         sanitize(value, {
-             email: 'trim|lowerCase',
+        senha: 'required|min:6',
+        confSenha: 'required|same:senha',
+        data_nascimento: 'required'
+    }).then((value) => {
+        console.log('Aqui2', value)
+        sanitize(value, {
+            email: 'trim|lowerCase',
             senha: 'trim'
-         })
-         console.log(value)
+        })
+        console.log(value)
         delete value.confSenha
 
         bcrypt.hash(value.senha, 10).then((hash) => {
-           console.log(value)
-           value.senha = hash
-            db.query('INSERT INTO candidato SET ?', [value], (error ) => {
-               if (error) {
-                   throw error
-               }
+            console.log(value)
+            value.senha = hash
+            db.query('INSERT INTO candidato SET ?', [value], (error) => {
+                if (error) {
+                    throw error
+                }
 
                 res.send({
                     code: 200
-                 })
-             })
+                })
+            })
         }).catch((error) => {
             res.status(400).send(error)
         })
-     })
+    })
 })
 
 

@@ -32,21 +32,29 @@
                           <h4 class="text-center mlt-4">
                             Assegura-se que já tens um perfil criado.
                           </h4>
-                          <v-form>
+                          <v-form v-on:submit.prevent="validar()">
                             <v-text-field
                               v-model="login.email"
                               label="Email"
                               prepend-icon="email"
                               type="email"
                               color="cyan"
+                              :class="{ 'is-invalid': isSubmitted && $v.login.name.$error}"
                             />
+                            <div v-if="isSubmitted && !$v.login.name.required" 
+                            class="invalid-feedback"> Employee name field is required!
+                            </div>
                             <v-text-field
                               v-model="login.senha"
                               label="Password"
                               prepend-icon="lock"
                               type="password"
                               color="cyan"
+                              :class="{ 'is-invalid': isSubmitted && $v.login.senha.$error}"
                             />
+                            <div v-if="isSubmitted && !$v.login.senha.required" 
+                            class="invalid-feedback"> 'Employee senha' field is required!
+                            </div>
                           </v-form>
                           <h3 class="text-center mt-3">
                             Esqueceu a sua senha?
@@ -89,6 +97,8 @@
 <script>
 /*import Navbarpublico from '../components/Navbarpublico'*/
 import { mapActions, mapGetters } from "vuex";
+import { required } from 'vuelidate/lib/validators';
+
 export default {
   props: {
     source: String,
@@ -108,11 +118,28 @@ export default {
         email: "",
         senha: "",
       },
+       isSubmitted: false,
     };
   },
+  validations: {
+    login:{
+      email:{ required },
+      senha: { required }
 
+    }
+
+  },
+ 
   methods: {
     ...mapActions(["setUser", "setToken"]),
+
+    validar(){
+      this.isSubmitted = true;
+      this.$v.$touch();
+      if(this.$v.$invalind){
+        return;
+      }
+    },
 
     entrar() {
       let data = {
