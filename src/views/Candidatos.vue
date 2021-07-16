@@ -23,8 +23,8 @@
             <td>{{ candidato.id_candidato }}</td>
             <td>{{ candidato.nome }}</td>
             <td>{{ candidato.telefone }}</td>
-            <td>{{ candidato.data_nascimento | date: 'dd-MM-yyyy' }}</td>
-            <td>{{ candidato.data_registro }}</td>
+            <td>{{ formatDate (candidato.data_nascimento) }}</td>
+            <td>{{ formatDater (candidato.data_registro) }}</td>
             <td>{{ candidato.email }}</td>
             <td>{{ candidato.municipio }}</td>
             <td>{{ candidato.nivelacademico }}</td>
@@ -40,6 +40,7 @@
 </template>
 <script>
 import Navbaradmin from "../components/Navbaradmin";
+import moment from 'moment'
 export default {
   name: "Publico",
   components: {
@@ -70,6 +71,16 @@ export default {
         this.candidatos = res.data.data;
       });
     },
+    formatDater(date){
+      var splitedDate = date.split('.')[0]
+
+      return moment (splitedDate, 'YYYY-MM-DDTHH:mm:ss').format('DD/MM/YYYY HH:mm:ss')
+    },
+    formatDate(date){
+      var splitedDate = date.split('.')[0]
+
+      return moment (splitedDate, 'YYYY-MM-DDTHH:mm:ss').format('DD/MM/YYYY')
+    }
   },
   created() {
     this.getCandidatos();

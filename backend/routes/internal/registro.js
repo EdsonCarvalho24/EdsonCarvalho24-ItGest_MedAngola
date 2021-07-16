@@ -97,7 +97,7 @@ router.post('/new', (req, res) => {
         confSenha: 'required|same:senha',
         data_nascimento: 'required'
     }).then((value) => {
-        console.log('Aqui2', value)
+        console.log(value)
         sanitize(value, {
             email: 'trim|lowerCase',
             senha: 'trim'

@@ -272,20 +272,19 @@ export default {
         id_escolaformacao: this.candidato.selectescolaformacao,
       };
       console.log(data);
-
       this.axios
         .post("http://localhost:3000/registro/new", data)
         .then((response) => {
           console.log(response);
           if (response.status == 200) {
             this.$swal({
-              title: "Dados validos",
+              title: "Dados válidos",
               icon: "success",
-              showConfirmButton: true, 
+              showConfirmButton: true,
               allowOutsideClick: false,
               allowEscapekey: false,
             });
-            this.$router.push({ name: 'login' })
+            this.$router.push({ name: "candidato" });
           }
         });
     },
